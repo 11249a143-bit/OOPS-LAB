@@ -1,66 +1,44 @@
-#include <iostream>
-#include <string>
-using namespace std;
-
-
-class Person {
-protected:
-    string name;
-    int age;
-
-public:
-    
-    Person(string n = "", int a = 0) {
-        name = n;
-        age = a;
+Aim:
+     To implement  single inheritance using base and derived classes.
+Algorithm:
+    1. Create a class Person with name and age.
+    2. Derive class Teacher with subject and salary.
+    3. Use base and derived class member functions to input and display data.
+    4. Create object and call functions.
+Program:
+    #include <iostream>
+    using namespace std;
+    class Person {
+    protected:
+     string name;
+     int age;
+    public:
+     void getData() {
+     cout << "Enter name and age: ";
+     cin >> name >> age;
+     }
+     void display() {
+     cout << "Name: " << name << ", Age: " << age << endl;
+     }
+    };
+    class Teacher : public Person {
+     string subject;
+     float salary;
+    public:
+     void getTeacherData() {
+     getData();
+     cout << "Enter subject and salary: ";
+     cin >> subject >> salary;
+     }
+     void displayTeacher() {
+     display();
+     cout << "Subject: " << subject << ", Salary: " << salary << endl;
+     }
+    };
+    int main() {
+     Teacher t;
+     t.getTeacherData();
+     t.displayTeacher();
+     return 0;
     }
-
     
-    void displayPerson() const {
-        cout << "Name: " << name << ", Age: " << age << endl;
-    }
-};
-
-
-class Teacher : public Person {
-private:
-    string subject;
-    double salary;
-
-public:
-    
-    Teacher(string n, int a, string sub, double sal) : Person(n, a) {
-        subject = sub;
-        salary = sal;
-    }
-
-    
-    void displayTeacher() const {
-        displayPerson();  
-        cout << "Subject: " << subject << ", Salary: $" << salary << endl;
-    }
-};
-
-
-int main() {
-    string name, subject;
-    int age;
-    double salary;
-
-    cout << "Enter teacher's name: ";
-    getline(cin, name);
-    cout << "Enter age: ";
-    cin >> age;
-    cin.ignore(); 
-    cout << "Enter subject: ";
-    getline(cin, subject);
-    cout << "Enter salary: ";
-    cin >> salary;
-
-    Teacher t1(name, age, subject, salary);
-
-    cout << "\n--- Teacher Details ---" << endl;
-    t1.displayTeacher();
-
-    return 0;
-}
